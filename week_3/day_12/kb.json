@@ -1,0 +1,362 @@
+[
+ {
+  "id": "KB-001",
+  "type": "article",
+  "title": "VPN disconnects every few minutes",
+  "text": "VPN disconnects every few minutes. Users on the Cisco AnyConnect client may see the tunnel drop at regular intervals. The most common cause is an MTU mismatch after a wireless controller firmware update. Set the client MTU to 1300 on the affected profile. If drops persist, check the firewall for repeated SSL handshake failures from the client's public IP; more than five failures per minute indicates the session is being re-negotiated rather than kept alive. Escalate to the Network team if handshake failures continue after the MTU change. Do not reissue the user's certificate as a first step - certificate problems produce an immediate authentication failure, not periodic drops.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-002",
+  "type": "article",
+  "title": "Outlook prompts repeatedly for a password",
+  "text": "Outlook prompts repeatedly for a password. Repeated credential prompts in Outlook are usually caused by a stale cached credential in Windows Credential Manager rather than an expired password. Clear all entries beginning with MicrosoftOffice16 and restart Outlook. If prompts continue, confirm the mailbox has not been migrated to a different Exchange region; a mid-migration mailbox will prompt indefinitely. Modern Authentication must be enabled on the tenant. This issue does not affect Outlook Web Access, so a working OWA session is a reliable signal that the account itself is healthy and the fault is local to the desktop client.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-003",
+  "type": "article",
+  "title": "Laptop will not power on",
+  "text": "Laptop will not power on. If the laptop shows no lights at all, perform a hard reset: disconnect power, hold the power button for thirty seconds, reconnect and retry. For Dell Latitude models the battery must be disconnected via the service hatch for this to take effect. If a single amber light blinks in a repeating pattern, count the blinks - two indicates a memory fault, three indicates a mainboard fault. Memory faults are usually resolved by reseating the DIMM. Mainboard faults require a depot repair and the user should be issued a loan device immediately from the local stock cupboard on their floor, with no approval required.",
+  "status": "outdated",
+  "last_reviewed": "2023-06-02",
+  "conflicts_with": "RB-10"
+ },
+ {
+  "id": "KB-004",
+  "type": "article",
+  "title": "Shared drive mapping disappears after reboot",
+  "text": "Shared drive mapping disappears after reboot. Mapped network drives that vanish on restart are almost always caused by the drive being mapped in the user session rather than through Group Policy Preferences. Confirm the mapping appears in gpresult output. If it does not, the user has mapped it manually and it should be migrated to the correct GPO. A second cause is fast startup on Windows 11, which restores a session before the network stack is ready; disabling fast startup resolves this. Do not use persistent net use commands as a workaround - they mask the underlying policy gap and break when the user changes department.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-005",
+  "type": "article",
+  "title": "Printer shows offline but responds to ping",
+  "text": "Printer shows offline but responds to ping. A printer that answers ping but reports offline in Windows has usually lost its print spooler registration rather than network connectivity. Restart the Print Spooler service on the print server, not on the client. If the printer is deployed by Group Policy, confirm the queue still exists on the server; a deleted queue leaves a stale client-side entry that appears offline forever. For direct-IP printers, check the port configuration matches the printer's current address - printers that pick up a new DHCP lease are the single most common cause of this symptom.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-006",
+  "type": "article",
+  "title": "Multi-factor authentication push notification never arrives",
+  "text": "Multi-factor authentication push notification never arrives. If the Microsoft Authenticator push does not arrive, first confirm the user's device has data connectivity and that battery optimisation is not suspending the app. Android devices place Authenticator in a restricted state after long idle periods. Have the user open the app manually, which forces a poll. If the push still fails, fall back to the six-digit code, which works entirely offline and does not depend on push delivery. Hardware tokens were withdrawn from the estate in 2025 and are no longer supported; a hardware token must never be resynchronised, it must be collected and replaced with the Authenticator app. Persistent failures across multiple users indicate a tenant-level notification issue and should be escalated to Identity Services rather than handled per-user.",
+  "status": "contradictory",
+  "last_reviewed": "2026-08-11",
+  "conflicts_with": "KB-025"
+ },
+ {
+  "id": "KB-007",
+  "type": "article",
+  "title": "Teams meeting audio drops for one participant",
+  "text": "Teams meeting audio drops for one participant. Audio dropping for a single participant while others are unaffected is a client-side or last-mile issue, not a service outage. Have the user switch from Wi-Fi to a wired connection to confirm. Check the Teams call analytics in the admin centre: round-trip times above 300ms or packet loss above 2% will produce this symptom. If the user is on VPN, split tunnelling should be enabled for Teams media traffic - routing media through the VPN concentrator is a frequent cause. Headset firmware is a less common but real cause on Jabra and Poly devices.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-008",
+  "type": "article",
+  "title": "Password reset self-service portal rejects the new password",
+  "text": "Password reset self-service portal rejects the new password. The self-service portal enforces the tenant password policy, which requires a minimum of twelve characters and blocks any password appearing in the banned-password list. It also blocks passwords that are too similar to the previous five. Users frequently hit the similarity rule without realising it, because the error message is generic. Advise a genuinely new passphrase rather than an incremented version of the old one. The portal does not enforce a character-class requirement, so a long lowercase passphrase is acceptable and is the recommended guidance for users who struggle with complexity rules.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-009",
+  "type": "article",
+  "title": "Email delivery delayed by up to two hours",
+  "text": "Email delivery delayed by up to two hours. Delivery delays of this length are typically caused by the message being held in the anti-malware sandbox for detonation. Attachments in Office format with embedded macros routinely take 20 to 90 minutes. Check the message trace in the security portal; a status of Pending with an ATP event confirms this. Delays affecting all mail regardless of attachment indicate a connector or queue problem and should be escalated immediately. Do not release messages from quarantine to bypass the delay without a documented business justification and approval from Information Security.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-010",
+  "type": "article",
+  "title": "Application crashes on login with error APP-771",
+  "text": "Application crashes on login with error APP-771. Error APP-771 is raised by the internal ERP client when the user's cached profile references a cost centre that no longer exists. This happens after a departmental reorganisation. Clearing the local cache directory under AppData\\Local\\ERPClient forces a fresh profile download on next login and resolves the crash. If the crash recurs after clearing the cache, the user's record in the ERP directory still points at the deleted cost centre and must be corrected by the Finance systems team. APP-771 is never a client installation fault, so reinstalling the application will not help.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-011",
+  "type": "article",
+  "title": "Wi-Fi drops when moving between floors",
+  "text": "Wi-Fi drops when moving between floors. Roaming failures between access points are caused by the client holding on to a weak signal rather than by AP coverage gaps. Confirm the client supports 802.11r fast transition; older USB adapters do not and will always roam poorly. Set the roaming aggressiveness on Intel adapters to medium-high. Coverage should be verified with a survey before assuming a client fault, but a single user affected while colleagues on the same floor are fine points firmly at the client. Disabling the 2.4GHz band on the client profile improves roaming in buildings with dense 5GHz coverage.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-012",
+  "type": "article",
+  "title": "OneDrive sync stuck on 'Processing changes'",
+  "text": "OneDrive sync stuck on 'Processing changes'. A sync client stuck in Processing changes is usually working through a large number of small files rather than being genuinely hung. Check the number of items; libraries above 300,000 items exceed the supported limit and will never complete. Files with unsupported characters in the name also stall the queue. Resetting the client with onedrive.exe /reset re-establishes the sync relationship without deleting local data, but the initial scan can take several hours on a large library. Never delete the local folder as a troubleshooting step - files that have not finished uploading exist only in that folder, and this is the most common cause of user data loss in this category.",
+  "status": "contradictory",
+  "last_reviewed": "2026-07-30",
+  "conflicts_with": "RB-06"
+ },
+ {
+  "id": "KB-013",
+  "type": "article",
+  "title": "Remote desktop session disconnects after fifteen minutes",
+  "text": "Remote desktop session disconnects after fifteen minutes. A fifteen-minute disconnect is the configured idle session timeout on the RDS collection and is working as designed. Sessions are disconnected, not logged off, so the user's work is preserved and reconnecting restores the session. If the user requires a longer window, a business justification is needed to move them to the extended-timeout collection. Disconnects at irregular intervals rather than exactly fifteen minutes indicate a network problem instead and should be investigated as such. Check the RDS gateway logs to distinguish an idle timeout from a transport-level drop.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-014",
+  "type": "article",
+  "title": "Software installation blocked by application control",
+  "text": "Software installation blocked by application control. Installations blocked with a policy message are being denied by the application allow-list, not by a permissions problem. Granting local administrator rights will not bypass it and must not be used as a workaround. Submit the application for review through the software request catalogue; the security review takes three working days. Business-critical exceptions can be expedited by the Service Desk manager. Users who repeatedly attempt a blocked installation will generate security alerts, so advise them to stop attempting after the first denial and raise the request instead.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-015",
+  "type": "article",
+  "title": "Database query timeouts during month-end",
+  "text": "Database query timeouts during month-end. Timeouts concentrated at month-end are caused by contention with the finance batch reconciliation job rather than by a query defect. The reconciliation job holds long-running locks on the ledger tables between 18:00 and 23:00 on the last two working days of each month. Reporting queries against those tables should be scheduled outside that window. If a query must run during it, the read-only replica is available and is not affected by the batch locks. Raising the client timeout value does not fix the contention and simply defers the failure.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-016",
+  "type": "article",
+  "title": "New starter account not created on first day",
+  "text": "New starter account not created on first day. Account creation is driven by the HR feed, which runs nightly at 02:00. A starter whose HR record was completed after that run will not have an account until the following morning. This is expected behaviour, not a fault. Urgent same-day accounts require a manual creation request approved by the hiring manager. Check the HR record has a populated start date and cost centre; either field being blank causes the feed to skip the record silently, which is the most common cause of a genuinely missing account rather than a timing issue.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-017",
+  "type": "article",
+  "title": "Mobile device shows 'device not compliant'",
+  "text": "Mobile device shows 'device not compliant'. A non-compliant status blocks access to corporate resources until the device meets policy. The three most common causes are an out-of-date OS version, a disabled device passcode, and a rooted or jailbroken device. The compliance portal shows the specific failing rule. OS version failures resolve themselves once the user updates and the device checks in, which can take up to eight hours. Force a check-in from the Company Portal app to speed this up. Rooted devices cannot be made compliant and must be replaced; there is no exception process for this rule.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-018",
+  "type": "article",
+  "title": "Browser reports certificate error on internal sites",
+  "text": "Browser reports certificate error on internal sites. Certificate errors on internal sites usually mean the device is missing the internal root CA certificate, which is deployed by Group Policy. Devices that have been off the network for an extended period may have missed the deployment. Force a policy refresh with gpupdate. If the error names an expired certificate rather than an untrusted issuer, the site certificate itself has lapsed and the application owner must renew it. Never advise users to click through a certificate warning as a workaround - this trains exactly the behaviour that phishing campaigns exploit.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-019",
+  "type": "article",
+  "title": "Excel file locked for editing by another user",
+  "text": "Excel file locked for editing by another user. A file reported as locked when nobody has it open is usually holding a stale lock left by a client that crashed or lost network connectivity. The lock clears automatically after ten minutes of inactivity. If it does not, the file's owner shown in the message is the account that holds the lock, and the session can be closed from the file server's open-files console. For files in SharePoint or OneDrive, co-authoring should be used instead; a persistent lock there indicates the file is open in the desktop client with an unsaved change.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-020",
+  "type": "article",
+  "title": "Conference room display shows no signal",
+  "text": "Conference room display shows no signal. No-signal faults are most often a source selection problem rather than a hardware failure. Confirm the display is on the correct HDMI input; the room control panel resets to input one overnight. If the correct input is selected, test with a known-good cable, as the fixed cables in meeting rooms fail regularly from repeated connection cycles. USB-C connections that charge the laptop but show no picture indicate a cable that carries power but not video. Rooms with a dedicated Teams Room device should be restarted from the console rather than at the wall socket.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-021",
+  "type": "article",
+  "title": "Antivirus quarantines a legitimate business file",
+  "text": "Antivirus quarantines a legitimate business file. False positive quarantines should be released only after confirming the file's origin. Files downloaded from the internet or received by email must not be released without a security review, regardless of how urgently the user needs them. Internally produced files with a known author can be released by the Service Desk and an exclusion requested. Never add a folder-level exclusion to resolve a single-file detection; folder exclusions are a standing risk and require Information Security approval with a documented expiry date.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-022",
+  "type": "article",
+  "title": "Slow file access over the WAN at branch sites",
+  "text": "Slow file access over the WAN at branch sites. Branch users opening large files from head-office shares experience latency proportional to file size because the protocol is chatty over high-latency links. This is expected and is not a bandwidth fault; adding bandwidth will not materially improve it. The correct remedy is to move the working set to the branch cache or migrate the content to SharePoint, which is optimised for this access pattern. Confirm the round-trip time to head office; above 60ms the effect becomes clearly noticeable to users on files larger than 20MB.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-023",
+  "type": "article",
+  "title": "User reports missing emails from a specific sender",
+  "text": "User reports missing emails from a specific sender. Check the message trace before assuming deletion. Mail from a specific sender that never arrives is most often blocked at the connector by an anti-spoofing rule when the sending domain has a strict DMARC policy and is being relayed by a third party. The trace will show a reject with a DMARC failure reason. Adding the sender to the safe-list does not override DMARC enforcement. The correct fix is for the sending organisation to authorise its relay in SPF, and the user should be told that this is not something the Service Desk can resolve unilaterally.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-024",
+  "type": "article",
+  "title": "Batch job failed with no error output",
+  "text": "Batch job failed with no error output. A batch job that fails silently has almost always run out of disk space on the working volume or hit a permissions change on its output directory. Check free space first; the job writes temporary files that can briefly triple the size of the output. Silent failures after a successful history strongly suggest a change in the service account's group membership. The job does not log to the application log by default, so enable verbose logging in the job configuration before the next scheduled run rather than attempting to reproduce it manually.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-025",
+  "type": "article",
+  "title": "Two-factor token out of sync",
+  "text": "Two-factor token out of sync. Hardware token codes that are consistently rejected while the token still displays a code indicate clock drift between the token and the server. Resynchronise the token by submitting two consecutive codes in the admin console. Tokens more than five minutes out of drift cannot be resynchronised and must be replaced. Software tokens on a phone drift only if the device clock is set manually; ensure automatic time is enabled. Repeated resynchronisation requests for the same token within a month indicate a failing device and it should be swapped rather than resynchronised again.",
+  "status": "outdated",
+  "last_reviewed": "2023-02-09",
+  "conflicts_with": "KB-006"
+ },
+ {
+  "id": "KB-026",
+  "type": "article",
+  "title": "Guest Wi-Fi voucher not working",
+  "text": "Guest Wi-Fi voucher not working. Guest vouchers expire twenty-four hours after issue, not twenty-four hours after first use, which is the most common misunderstanding. A voucher issued the previous day will not work regardless of whether it was used. Vouchers are also single-device by default; a guest connecting a second device will be rejected with the same generic error. Multi-device vouchers can be issued on request by reception. The guest network is isolated from corporate resources, so a guest who needs access to internal systems requires a sponsored account instead.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-027",
+  "type": "article",
+  "title": "Disk encryption recovery key not found",
+  "text": "Disk encryption recovery key not found. Recovery keys are escrowed to the device record in the management console at the point of encryption. A device with no key present was almost certainly encrypted before enrolment or was re-imaged without re-enrolling. Check the previous device record before concluding the key is lost. If no key exists anywhere, the data is unrecoverable and the device must be re-imaged; there is no vendor backdoor and no escalation path that recovers it. This is the reason the pre-enrolment encryption check exists in the build process and must not be skipped.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-028",
+  "type": "article",
+  "title": "Licence error when opening a design application",
+  "text": "Licence error when opening a design application. Concurrent-licence applications release a seat only after a clean exit. Users who close the laptop lid without quitting hold their seat until the licence server times them out after two hours. Check the licence server console for the current seat holders before assuming the pool is exhausted. Seats can be reclaimed manually from the console. If the pool is genuinely at capacity during normal hours, this is a capacity request for the application owner, not a fault, and should be routed accordingly rather than resolved by reclaiming another user's seat.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-029",
+  "type": "article",
+  "title": "SharePoint site permissions not inherited by a subsite",
+  "text": "SharePoint site permissions not inherited by a subsite. A subsite created with unique permissions does not inherit later changes made to the parent. This is by design and cannot be retro-fitted without re-enabling inheritance, which discards the subsite's current permission set. Confirm the intended model with the site owner before changing anything. Permission changes take up to fifteen minutes to propagate to the search index, so a user who still cannot find content shortly after a change should be asked to retry rather than having their permissions changed again.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "KB-030",
+  "type": "article",
+  "title": "Scanner sends documents to the wrong folder",
+  "text": "Scanner sends documents to the wrong folder. Scan-to-folder destinations are configured per user in the device address book and are not updated automatically when a user changes department. A scan arriving in an old team's folder indicates a stale address-book entry on that specific device, not a fault in the scanning software. Update the entry on the device itself; the change does not replicate to other devices, so users who scan from multiple machines need each one updated. Scan-to-email is unaffected by this and is a reasonable interim workaround.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-01",
+  "type": "runbook",
+  "title": "Runbook: Password reset for a locked account",
+  "text": "Runbook: Password reset for a locked account. Step 1: Verify the caller's identity using two pieces of information from the HR record - never accept a manager's word alone. Step 2: Confirm the account is locked rather than disabled; a disabled account indicates a leaver process and must not be re-enabled by the Service Desk. Step 3: Unlock the account in the directory console. Step 4: Reset the password only if the user cannot recall it; an unlock alone is sufficient after repeated failed logins. Step 5: Set the must-change-at-next-logon flag. Step 6: Record the verification method used in the ticket. Escalate to Identity Services if the account locks again within one hour, which indicates a cached credential on another device.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-02",
+  "type": "runbook",
+  "title": "Runbook: Onboarding a new starter",
+  "text": "Runbook: Onboarding a new starter. Step 1: Confirm the HR record is complete, with start date and cost centre populated. Step 2: Verify the account was created by the nightly feed; if not, raise a manual creation request with hiring-manager approval. Step 3: Assign the licence bundle matching the job family. Step 4: Add the user to the department security groups from the role template - never copy another user's group membership, as this propagates access errors. Step 5: Enrol the device and confirm the disk encryption key escrowed successfully. Step 6: Book the user onto the security induction. Step 7: Confirm first-day login with the user before closing the ticket.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-03",
+  "type": "runbook",
+  "title": "Runbook: Offboarding a leaver",
+  "text": "Runbook: Offboarding a leaver. Step 1: Disable the account on the leaving date, do not delete it. Step 2: Convert the mailbox to shared and grant the manager access for ninety days. Step 3: Revoke all active sessions and reset the password to a random value. Step 4: Reclaim licences after the mailbox conversion, not before, or the mailbox becomes inaccessible. Step 5: Collect the device and confirm the encryption key is still escrowed before re-imaging. Step 6: Transfer OneDrive content to the manager. Step 7: Retain the disabled account for ninety days before deletion. Any deviation requires HR approval recorded in the ticket.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-04",
+  "type": "runbook",
+  "title": "Runbook: Responding to a suspected phishing report",
+  "text": "Runbook: Responding to a suspected phishing report. Step 1: Do not click any link in the reported message. Step 2: Confirm whether the user interacted with it - clicked, entered credentials, or opened an attachment. Step 3: If credentials were entered, immediately reset the password and revoke sessions before any further investigation. Step 4: Submit the message to the security team through the reporting add-in. Step 5: Search for other recipients using message trace and request a tenant-wide purge if the campaign is broad. Step 6: Do not reply to the sender or ask them to stop. Step 7: Thank the reporting user; discouraging reports is worse than a false positive.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-05",
+  "type": "runbook",
+  "title": "Runbook: Major incident declaration",
+  "text": "Runbook: Major incident declaration. Step 1: A major incident is declared when a business-critical service is unavailable to multiple users with no workaround. Step 2: The Service Desk shift lead has authority to declare - do not wait for management approval. Step 3: Open the incident bridge and record the start time. Step 4: Appoint an incident manager who does not also perform technical work. Step 5: Send the first communication within fifteen minutes, even if it only states that the issue is being investigated. Step 6: Update stakeholders every thirty minutes regardless of whether progress has been made. Step 7: Do not close the bridge until the service is confirmed stable for thirty minutes.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-06",
+  "type": "runbook",
+  "title": "Runbook: Restoring a file from backup",
+  "text": "Runbook: Restoring a file from backup. Step 1: Establish the exact filename and the last known good date from the user. Step 2: Check the Previous Versions tab on the file share before opening a backup request, as most restores can be self-served. Step 3: For a OneDrive file, delete the local sync folder and allow the client to download a fresh copy from the server, which is the fastest route to a clean restore. Step 4: For file-share content, raise a restore request with the Backup team quoting the share path and the target date. Step 5: Restores older than ninety days require Information Security approval. Step 6: Confirm with the user that the restored file opens before closing the ticket.",
+  "status": "outdated",
+  "last_reviewed": "2022-11-18",
+  "conflicts_with": "KB-012"
+ },
+ {
+  "id": "RB-07",
+  "type": "runbook",
+  "title": "Runbook: Emergency change during an incident",
+  "text": "Runbook: Emergency change during an incident. Step 1: Emergency changes bypass the normal advisory board but still require a record raised before implementation, not after. Step 2: Obtain verbal approval from the on-call change authority and record who gave it and when. Step 3: Document the backout plan before making the change - a change with no backout plan must not proceed under emergency rules. Step 4: Implement and verify. Step 5: Raise the retrospective documentation within one working day. Step 6: The change is reviewed at the next advisory board regardless of outcome. Skipping the retrospective record is treated as a compliance breach.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-08",
+  "type": "runbook",
+  "title": "Runbook: Handling a data loss report",
+  "text": "Runbook: Handling a data loss report. Step 1: Stop the user from working in the affected location immediately - continued activity can overwrite recoverable data. Step 2: Establish what was lost, where it lived, and when it was last seen. Step 3: Check the recycle bin and version history before treating it as a restore request; most reported losses are recoverable this way. Step 4: If personal data may have been lost or exposed, notify the data protection officer within twenty-four hours; this is a legal obligation and is not discretionary. Step 5: Do not promise recovery to the user before it is confirmed. Step 6: Record the root cause even where data is recovered.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-09",
+  "type": "runbook",
+  "title": "Runbook: Escalating to third-party vendor support",
+  "text": "Runbook: Escalating to third-party vendor support. Step 1: Confirm the issue is within the vendor's scope and the support contract is current. Step 2: Gather logs, exact error text, and the reproduction steps before opening the case - incomplete cases are the main cause of slow vendor response. Step 3: Open the case at the correct severity; inflating severity damages credibility and is noticed. Step 4: Record the vendor case number in the ticket. Step 5: Chase according to the contracted response time, not sooner. Step 6: Keep the internal ticket open and updated; never close it while a vendor case is live, as this loses the audit trail.",
+  "status": "current",
+  "last_reviewed": "2026-08-20",
+  "conflicts_with": ""
+ },
+ {
+  "id": "RB-10",
+  "type": "runbook",
+  "title": "Runbook: Device replacement for hardware failure",
+  "text": "Runbook: Device replacement for hardware failure. Step 1: Confirm the fault is hardware and not a software failure; a device that posts but will not boot is a build problem, not a replacement case. Step 2: Local stock cupboards were closed in 2025 and no loan devices may be issued locally under any circumstances. Step 3: Raise a replacement request with Central Logistics, which ships a pre-built device within forty-eight hours. Step 4: Line-manager approval is mandatory for every replacement and must be recorded in the ticket before the request is raised. Step 5: Confirm the encryption key is escrowed before the failed device is collected. Step 6: The failed device must be returned to Central Logistics within five working days or it is charged to the department.",
+  "status": "contradictory",
+  "last_reviewed": "2026-08-04",
+  "conflicts_with": "KB-003"
+ }
+]
