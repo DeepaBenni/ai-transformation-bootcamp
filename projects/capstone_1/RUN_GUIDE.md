@@ -84,9 +84,29 @@ If a cell fails, read the error message at the bottom of that cell first — it'
 
 ---
 
-## 3. Run the Streamlit app
+## 3. Run `predict.py` directly — sanity check before launching the UI
 
-Once the pickle exists (step 1) and, ideally, you've shown it being produced (step 2):
+Before opening the Streamlit app, run the serving module on its own from the command line:
+
+```bash
+python -m app.serving.predict
+```
+
+This is the exact same code the Streamlit app calls to score a flight — running it standalone first means if something's wrong (pickle missing, lookups missing, a bad import), you find out here as a plain, readable error, not as a blank or broken browser tab in front of your audience.
+
+**Expected output:**
+
+1. A `MODEL` section — the shipped family (`forest`, `boosted`, or `linear`), its threshold, its validation lift over baseline, and whether the lookup tables loaded.
+2. Three worked examples, each with a real probability, a risk band, and 2-4 plain-English reasons.
+3. Four deliberately invalid inputs, each producing a one-line readable error (e.g. `departure_hour must be an integer 0-23, got 25`) instead of a traceback — this proves the input validation works before you ever put it in front of someone typing garbage into the UI.
+
+If it fails with `No model at ... Run: python -m app.cli train`, the pickle wasn't produced — go back to step 2 and confirm `02_model_build.ipynb` actually ran its export cell.
+
+---
+
+## 4. Run the Streamlit app
+
+Once the pickle exists (step 1), the notebooks have run (step 2), and the standalone check above passed (step 3):
 
 ```bash
 streamlit run streamlit_app.py
@@ -105,6 +125,7 @@ See `STREAMLIT_GUIDE.md` for what to actually show on the page and how to handle
 1. Open `03_Data_Prep_And_EDA.md` — walk through 1-2 of the five findings (finding 2, the positive-rate spread across months, is the most interesting one to show).
 2. Open `01_data_pipeline.ipynb` with its saved output — point at the verified holdout hash and the row counts.
 3. Open `02_model_build.ipynb` with its saved output — point at the three model definitions, the cross-validation table, and the final line showing the exported model scoring a real flight. (You don't need to re-run it live unless you want to; the saved output already proves it ran.)
-4. Switch to the Streamlit app (already running from step 3 above) — pick a flight in the sidebar, click **Assess risk**, and walk through the probability, the reasons, and the caveat.
+4. Run `python -m app.serving.predict` in a terminal (step 3 above) — this is prep, not usually something to dwell on in front of the audience, but it's your last checkpoint that everything downstream of the notebook actually works before you open the app.
+5. Switch to the Streamlit app (step 4 above) — pick a flight in the sidebar, click **Assess risk**, and walk through the probability, the reasons, and the caveat.
 
 That order goes data → model → live product, which is the easiest structure for an audience to follow.
