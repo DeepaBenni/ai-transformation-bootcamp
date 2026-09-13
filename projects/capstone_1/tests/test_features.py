@@ -1,30 +1,29 @@
 import pandas as pd
-import pytest
 
 from app.features import build
 from app.features.forbidden import FORBIDDEN
 
 
 def _raw():
-    return pd.DataFrame({
-        "FlightDate": pd.to_datetime(
-            ["2026-01-05", "2026-01-05", "2026-02-10", "2026-03-15"]
-        ),
-        "period": ["2026-01", "2026-01", "2026-02", "2026-03"],
-        "Reporting_Airline": ["DL", "AA", "DL", "DL"],
-        "Tail_Number": ["N1", "N2", "N1", "N1"],
-        "Origin": ["ATL", "ATL", "ATL", "ORD"],
-        "Dest": ["ORD", "ORD", "ORD", "ATL"],
-        "CRSDepTime": [1730, 630, 1730, 2230],
-        "CRSArrTime": [1925, 825, 1925, 35],
-        "CRSElapsedTime": [115.0, 115.0, 115.0, 125.0],
-        "Distance": [606.0, 606.0, 606.0, 606.0],
-        "DistanceGroup": [3, 3, 3, 3],
-        "DayOfWeek": [1, 1, 2, 7],
-        "Month": [1, 1, 2, 3],
-        "Quarter": [1, 1, 1, 1],
-        "label": [1, 0, 1, 0],
-    })
+    return pd.DataFrame(
+        {
+            "FlightDate": pd.to_datetime(["2026-01-05", "2026-01-05", "2026-02-10", "2026-03-15"]),
+            "period": ["2026-01", "2026-01", "2026-02", "2026-03"],
+            "Reporting_Airline": ["DL", "AA", "DL", "DL"],
+            "Tail_Number": ["N1", "N2", "N1", "N1"],
+            "Origin": ["ATL", "ATL", "ATL", "ORD"],
+            "Dest": ["ORD", "ORD", "ORD", "ATL"],
+            "CRSDepTime": [1730, 630, 1730, 2230],
+            "CRSArrTime": [1925, 825, 1925, 35],
+            "CRSElapsedTime": [115.0, 115.0, 115.0, 125.0],
+            "Distance": [606.0, 606.0, 606.0, 606.0],
+            "DistanceGroup": [3, 3, 3, 3],
+            "DayOfWeek": [1, 1, 2, 7],
+            "Month": [1, 1, 2, 3],
+            "Quarter": [1, 1, 1, 1],
+            "label": [1, 0, 1, 0],
+        }
+    )
 
 
 def test_feature_list_is_twenty_four_long():
@@ -68,7 +67,7 @@ def test_weekend_flags_sunday():
 
 def test_scheduled_speed_is_clipped_to_a_physical_range():
     frame = _raw()
-    frame.loc[0, "CRSElapsedTime"] = 1.0      # absurd: 36,360 mph
+    frame.loc[0, "CRSElapsedTime"] = 1.0  # absurd: 36,360 mph
     out = build.add_schedule_features(frame)
     assert out.sched_speed_mph.max() <= 700
     assert out.sched_speed_mph.min() >= 100
@@ -111,9 +110,32 @@ def test_days_to_holiday_matches_a_manual_nearest_holiday_search():
     out = build.add_schedule_features(frame)
 
     holidays = [h.date() for h in build.HOLIDAYS]
-    expected = [
-        min(abs((d.date() - h).days) for h in holidays)
-        for d in frame.FlightDate
-    ]
+    expected = [min(abs((d.date() - h).days) for h in holidays) for d in frame.FlightDate]
     expected = [min(gap, 7) for gap in expected]
     assert out.days_to_holiday.tolist() == expected
+
+
+def test_bts_2400_convention_maps_to_hour_zero_and_flags_red_eye():
+    """2400 (BTS's midnight spelling) must map to hour 0, not hour 24.
+
+    `_hour` uses `.mod(24)` specifically for this. If that were ever dropped,
+    dep_hour would become 24, is_red_eye would silently go to 0 (24 is not in
+    range(0, 6)), and nothing else would catch it - hence this focused test.
+    """
+    frame = pd.DataFrame(
+        {
+            "FlightDate": pd.to_datetime(["2026-01-05"]),
+            "Tail_Number": ["N1"],
+            "Origin": ["ATL"],
+            "Dest": ["ORD"],
+            "CRSDepTime": [2400],
+            "CRSArrTime": [2400],
+            "CRSElapsedTime": [115.0],
+            "Distance": [606.0],
+            "DayOfWeek": [1],
+        }
+    )
+    out = build.add_schedule_features(frame)
+    assert out.dep_hour.iloc[0] == 0
+    assert out.arr_hour.iloc[0] == 0
+    assert out.is_red_eye.iloc[0] == 1
