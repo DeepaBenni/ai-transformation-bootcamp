@@ -1,0 +1,7 @@
+         pr_auc  pr_auc_sd    lift  recall  precision  roc_auc   brier   fit_s
+model                                                                         
+forest   0.3304     0.0415  1.4809  0.2047     0.3885   0.6432  0.1673  143.00
+boosted  0.3282     0.0451  1.4707  0.2907     0.3629   0.6451  0.1680  155.28
+linear   0.3142     0.0382  1.4078  0.2407     0.3651   0.6293  0.1739    7.98
+
+shipped forest: D:\AI Transformation Bootcamp Project\ai-transformation-bootcamp\projects\capstone_1\models\flight_delay_model.pkl  (5,696,742 rows)
