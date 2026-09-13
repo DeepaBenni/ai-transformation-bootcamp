@@ -65,8 +65,8 @@ def _read_clean(columns: list[str] | None = None) -> pd.DataFrame:
         The cleaned frame with a ``period`` column present.
     """
     _require_clean_parquet()
-    available = set(pq.ParquetFile(CLEAN_PARQUET).schema_arrow.names)
     if columns is not None:
+        available = set(pq.ParquetFile(CLEAN_PARQUET).schema_arrow.names)
         wanted = set(columns) | ({"period"} if "period" in available else {"FlightDate"})
         columns = [c for c in wanted if c in available]
     frame = pd.read_parquet(CLEAN_PARQUET, columns=columns)
