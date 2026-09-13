@@ -1,0 +1,41 @@
+[project]
+name = "opsmate"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # import sorting
+    "N",    # PEP 8 naming
+    "UP",   # modern syntax
+    "B",    # bugbear: mutable defaults, bare except
+    "SIM",  # simplification
+    "D",    # docstrings
+    "ANN",  # type annotations
+    "RUF",
+]
+ignore = ["D203", "D213", "ANN401"]
+
+[tool.ruff.lint.per-file-ignores]
+# Test functions take pytest fixtures and parametrized values by name; annotating
+# every one of them adds ceremony without safety. Bodies still get type checking.
+"tests/*" = ["D103", "ANN001", "ANN201", "ANN202"]
+"__init__.py" = ["D104"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

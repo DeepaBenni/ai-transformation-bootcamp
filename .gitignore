@@ -5,9 +5,28 @@ __pycache__/
 data/raw/
 .claude
 
-.vscode/
+# --- python tooling ---
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
 
-week_3/day_13/chroma_day13/
+# --- editor / OS ---
+.vscode/
+.DS_Store
+
+# --- personal study / demo-prep notes, kept local ---
+Documentation/
+understanding_docs/
+
+# --- capstone 2 (OpsMate) runtime artefacts ---
+chroma_opsmate/
+traces/
+*.log
+checkpoints.sqlite*
+chat_sessions.json
+
+# --- week 3 vector stores, rebuilt from kb.json ---
 week_3/day_12/chroma_day12/
+week_3/day_13/chroma_day13/
 week_3/day_14/chroma_day13/
 week_3/day_14/chroma_day1323/
