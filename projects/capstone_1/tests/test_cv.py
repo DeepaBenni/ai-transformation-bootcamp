@@ -1,4 +1,6 @@
 import pytest
+from sklearn.exceptions import NotFittedError
+from sklearn.utils.validation import check_is_fitted
 
 from app.models import cv, zoo
 
@@ -32,6 +34,8 @@ def test_the_training_window_expands():
     sizes = [len(f.train_periods) for f in folds]
     assert sizes == sorted(sizes)
     assert sizes[0] < sizes[-1]
+    for earlier, later in zip(folds, folds[1:], strict=False):
+        assert set(earlier.train_periods) <= set(later.train_periods)
 
 
 def test_the_first_fold_trains_on_the_burn_in_months():
@@ -50,12 +54,19 @@ def test_a_validation_period_absent_from_the_data_is_rejected():
         cv.expanding_folds(PERIODS, ["2027-01"])
 
 
+def test_a_validation_period_with_nothing_before_it_is_rejected():
+    with pytest.raises(ValueError, match="nothing precedes"):
+        cv.expanding_folds(PERIODS, [PERIODS[0]])
+
+
 def test_zoo_offers_exactly_three_families():
     models = zoo.model_zoo()
     assert set(models) == {"linear", "forest", "boosted"}
 
 
 def test_zoo_returns_unfitted_estimators():
-    for model in zoo.model_zoo().values():
-        assert hasattr(model, "fit")
-        assert hasattr(model, "predict_proba")
+    for name, model in zoo.model_zoo().items():
+        assert hasattr(model, "fit"), name
+        assert hasattr(model, "predict_proba"), name
+        with pytest.raises(NotFittedError):
+            check_is_fitted(model)

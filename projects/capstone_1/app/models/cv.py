@@ -28,7 +28,8 @@ def expanding_folds(periods: Iterable[str], validation_periods: Iterable[str]) -
 
     Args:
         periods: Every period present, ``YYYY-MM``.
-        validation_periods: The periods to validate on, in order.
+        validation_periods: The periods to validate on. Order is not preserved -
+            output folds are always sorted ascending by validation period.
 
     Returns:
         One fold per validation period.
