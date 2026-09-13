@@ -3,6 +3,14 @@
 Track A's defining trap is leaking departure-delay information that would not
 exist at T-24h. This list is the whole defence, so it is a module with a test,
 not a comment.
+
+The guard is two-layered: an explicit set of named columns, plus a prefix rule
+for the ``Div*`` diversion-detail family (``Div1Airport``, ``Div2TailNum``, and
+so on - 45 columns as of the current BTS schema). Enumerating all 45 by name
+risks missing one, and silently under-guards the day BTS adds a ``Div6*``
+field; a prefix ban degrades safely instead. ``DivAirportLandings`` stays in
+the explicit set too - belt and braces is the point of a defence-in-depth
+guard.
 """
 
 from __future__ import annotations
@@ -53,6 +61,13 @@ FORBIDDEN: Final[frozenset[str]] = frozenset(
     }
 )
 
+# Diversion detail: every Div1..Div5 column (airport, wheels-on/off, tail
+# number, elapsed time, ...) is post-hoc actual data, unknown at T-24h. A
+# prefix rule covers the whole family without enumerating all 45 - no
+# legitimate feature starts with "Div" (the closest is "DistanceGroup", which
+# starts "Dis").
+FORBIDDEN_PREFIXES: Final[tuple[str, ...]] = ("Div",)
+
 
 def assert_no_leakage(columns: Iterable[str]) -> None:
     """Raise if any column is unknown 24 hours before departure.
@@ -63,7 +78,9 @@ def assert_no_leakage(columns: Iterable[str]) -> None:
     Raises:
         LeakageError: Naming every offending column.
     """
-    leaked = FORBIDDEN & set(columns)
+    column_set = set(columns)
+    leaked = FORBIDDEN & column_set
+    leaked |= {column for column in column_set if column.startswith(FORBIDDEN_PREFIXES)}
     if leaked:
         raise LeakageError(
             f"Leakage: {sorted(leaked)} are not known at T-24h. "

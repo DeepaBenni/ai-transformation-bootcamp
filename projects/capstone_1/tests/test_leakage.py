@@ -32,7 +32,23 @@ def test_assert_no_leakage_rejects_a_forbidden_column():
 
 
 def test_assert_no_leakage_accepts_a_clean_column_list():
-    assert_no_leakage(["Distance", "dep_hour", "route_late_rate"]) is None  # noqa: B015
+    assert assert_no_leakage(["Distance", "dep_hour", "route_late_rate"]) is None
+
+
+def test_assert_no_leakage_rejects_a_named_diversion_column():
+    with pytest.raises(LeakageError, match="Div1Airport"):
+        assert_no_leakage(["Distance", "Div1Airport"])
+
+
+def test_assert_no_leakage_rejects_any_div_prefixed_column():
+    """The prefix rule must catch Div columns outside the explicit set too."""
+    with pytest.raises(LeakageError, match="Div3WheelsOn"):
+        assert_no_leakage(["Distance", "Div3WheelsOn"])
+
+
+def test_assert_no_leakage_does_not_over_match_the_div_prefix():
+    """DistanceGroup starts "Dis", not "Div" - it must not be rejected."""
+    assert assert_no_leakage(["Distance", "DistanceGroup"]) is None
 
 
 def test_history_feature_ignores_future_months():
