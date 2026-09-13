@@ -1,0 +1,118 @@
+{
+  "users": [
+    {"user_id": "U-1042", "full_name": "Priya Raman",     "email": "priya.raman@example.com",  "department": "Finance",       "manager": "M-07 Alan Whitfield", "employment_status": "active"},
+    {"user_id": "U-2087", "full_name": "Daniel Okafor",   "email": "daniel.okafor@example.com","department": "Sales",         "manager": "M-03 Ruth Kelly",     "employment_status": "leaver"},
+    {"user_id": "U-3311", "full_name": "Mei Lin Chen",    "email": "meilin.chen@example.com",  "department": "Engineering",   "manager": "M-11 Sam Doyle",      "employment_status": "active"},
+    {"user_id": "U-4120", "full_name": "Tomas Herrera",   "email": "tomas.herrera@example.com","department": "Marketing",     "manager": "M-02 Ines Gomez",     "employment_status": "active"},
+    {"user_id": "U-5203", "full_name": "Aisha Bello",     "email": "aisha.bello@example.com",  "department": "HR",            "manager": "M-05 Peter Nagy",     "employment_status": "active"},
+    {"user_id": "U-6014", "full_name": "Jonas Weber",     "email": "jonas.weber@example.com",  "department": "Engineering",   "manager": "M-11 Sam Doyle",      "employment_status": "active"},
+    {"user_id": "U-7188", "full_name": "Sofia Rossi",     "email": "sofia.rossi@example.com",  "department": "Finance",       "manager": "M-07 Alan Whitfield", "employment_status": "active"},
+    {"user_id": "U-8022", "full_name": "Rahul Menon",     "email": "rahul.menon@example.com",  "department": "IT Operations", "manager": "M-09 Clara Fox",      "employment_status": "active"},
+    {"user_id": "U-9310", "full_name": "Grace Amoah",     "email": "grace.amoah@example.com",  "department": "Legal",         "manager": "M-04 Tim Barnes",     "employment_status": "active"},
+    {"user_id": "U-1550", "full_name": "Viktor Novak",    "email": "viktor.novak@example.com", "department": "Engineering",   "manager": "M-11 Sam Doyle",      "employment_status": "contractor"},
+    {"user_id": "U-2660", "full_name": "Elena Petrova",   "email": "elena.petrova@example.com","department": "Sales",         "manager": "M-03 Ruth Kelly",     "employment_status": "active"},
+    {"user_id": "U-3775", "full_name": "Omar Haddad",     "email": "omar.haddad@example.com",  "department": "Support",       "manager": "M-09 Clara Fox",      "employment_status": "active"}
+  ],
+
+  "accounts": [
+    {"user_id": "U-1042", "state": "locked",   "failed_logins_24h": 5, "disabled_reason": null,             "last_login_at": "2026-09-06 08:41:00", "password_set_at": "2026-06-01 09:00:00"},
+    {"user_id": "U-2087", "state": "disabled", "failed_logins_24h": 0, "disabled_reason": "offboarding",    "last_login_at": "2026-07-30 17:02:00", "password_set_at": "2026-02-10 09:00:00"},
+    {"user_id": "U-3311", "state": "active",   "failed_logins_24h": 0, "disabled_reason": null,             "last_login_at": "2026-09-07 08:12:00", "password_set_at": "2026-08-15 09:00:00"},
+    {"user_id": "U-4120", "state": "active",   "failed_logins_24h": 2, "disabled_reason": null,             "last_login_at": "2026-09-07 07:55:00", "password_set_at": "2026-05-20 09:00:00"},
+    {"user_id": "U-5203", "state": "locked",   "failed_logins_24h": 7, "disabled_reason": null,             "last_login_at": "2026-09-06 16:20:00", "password_set_at": "2026-03-11 09:00:00"},
+    {"user_id": "U-6014", "state": "active",   "failed_logins_24h": 0, "disabled_reason": null,             "last_login_at": "2026-09-07 09:01:00", "password_set_at": "2026-07-02 09:00:00"},
+    {"user_id": "U-7188", "state": "active",   "failed_logins_24h": 0, "disabled_reason": null,             "last_login_at": "2026-09-05 11:30:00", "password_set_at": "2026-01-19 09:00:00"},
+    {"user_id": "U-8022", "state": "active",   "failed_logins_24h": 0, "disabled_reason": null,             "last_login_at": "2026-09-07 06:44:00", "password_set_at": "2026-08-01 09:00:00"},
+    {"user_id": "U-9310", "state": "locked",   "failed_logins_24h": 4, "disabled_reason": null,             "last_login_at": "2026-09-06 14:05:00", "password_set_at": "2026-04-23 09:00:00"},
+    {"user_id": "U-1550", "state": "disabled", "failed_logins_24h": 0, "disabled_reason": "contract_ended", "last_login_at": "2026-08-29 18:00:00", "password_set_at": "2026-02-01 09:00:00"},
+    {"user_id": "U-2660", "state": "active",   "failed_logins_24h": 1, "disabled_reason": null,             "last_login_at": "2026-09-07 08:33:00", "password_set_at": "2026-06-18 09:00:00"},
+    {"user_id": "U-3775", "state": "active",   "failed_logins_24h": 0, "disabled_reason": null,             "last_login_at": "2026-09-07 09:10:00", "password_set_at": "2026-07-25 09:00:00"}
+  ],
+
+  "hosts": [
+    {"host": "app-prd-01",  "os": "Ubuntu 22.04", "environment": "prod", "site": "eu-west-1"},
+    {"host": "app-prd-02",  "os": "Ubuntu 22.04", "environment": "prod", "site": "eu-west-1"},
+    {"host": "app-prd-03",  "os": "Ubuntu 22.04", "environment": "prod", "site": "eu-west-2"},
+    {"host": "db-prd-01",   "os": "RHEL 9",       "environment": "prod", "site": "eu-west-1"},
+    {"host": "file-prd-01", "os": "Windows 2022", "environment": "prod", "site": "eu-west-1"},
+    {"host": "vpn-gw-01",   "os": "Cisco IOS-XE", "environment": "prod", "site": "eu-west-1"}
+  ],
+
+  "services": [
+    {"service": "vpn-gateway",    "host": "vpn-gw-01",   "status": "up",       "depends_on": "sso-idp",     "status_since": "2026-09-01 00:00:00", "restart_window": "22:00-04:00"},
+    {"service": "mfa-push",       "host": "app-prd-01",  "status": "degraded", "depends_on": "sso-idp",     "status_since": "2026-09-07 08:52:00", "restart_window": "22:00-04:00"},
+    {"service": "sso-idp",        "host": "app-prd-01",  "status": "up",       "depends_on": null,          "status_since": "2026-08-20 00:00:00", "restart_window": "22:00-04:00"},
+    {"service": "print-spooler",  "host": "app-prd-02",  "status": "down",     "depends_on": null,          "status_since": "2026-09-07 07:15:00", "restart_window": "00:00-23:59"},
+    {"service": "file-sync",      "host": "file-prd-01", "status": "up",       "depends_on": null,          "status_since": "2026-08-30 00:00:00", "restart_window": "22:00-04:00"},
+    {"service": "mail-relay",     "host": "app-prd-03",  "status": "up",       "depends_on": null,          "status_since": "2026-08-11 00:00:00", "restart_window": "22:00-04:00"},
+    {"service": "backup-agent",   "host": "db-prd-01",   "status": "degraded", "depends_on": "file-sync",   "status_since": "2026-09-06 23:40:00", "restart_window": "22:00-04:00"},
+    {"service": "directory-sync", "host": "app-prd-02",  "status": "up",       "depends_on": "sso-idp",     "status_since": "2026-09-02 00:00:00", "restart_window": "22:00-04:00"}
+  ],
+
+  "config_items": [
+    {"ci_name": "app-prd-01",  "ci_type": "server",   "status": "degraded", "cpu_pct": 91.40, "mem_pct": 78.20, "last_checkin_at": "2026-09-07 09:12:00", "owner_team": "Platform"},
+    {"ci_name": "app-prd-02",  "ci_type": "server",   "status": "healthy",  "cpu_pct": 22.10, "mem_pct": 41.00, "last_checkin_at": "2026-09-07 09:12:00", "owner_team": "Platform"},
+    {"ci_name": "app-prd-03",  "ci_type": "server",   "status": "healthy",  "cpu_pct": 18.70, "mem_pct": 39.50, "last_checkin_at": "2026-09-07 09:11:00", "owner_team": "Platform"},
+    {"ci_name": "db-prd-01",   "ci_type": "database", "status": "healthy",  "cpu_pct": 44.30, "mem_pct": 66.80, "last_checkin_at": "2026-09-07 09:12:00", "owner_team": "Data"},
+    {"ci_name": "file-prd-01", "ci_type": "fileserver","status": "degraded","cpu_pct": 12.00, "mem_pct": 55.10, "last_checkin_at": "2026-09-07 09:10:00", "owner_team": "Platform"},
+    {"ci_name": "vpn-gw-01",   "ci_type": "network",  "status": "healthy",  "cpu_pct": 31.90, "mem_pct": 28.40, "last_checkin_at": "2026-09-07 09:12:00", "owner_team": "Network"},
+    {"ci_name": "sw-core-01",  "ci_type": "network",  "status": "healthy",  "cpu_pct": 8.30,  "mem_pct": 19.00, "last_checkin_at": "2026-09-07 09:12:00", "owner_team": "Network"},
+    {"ci_name": "prn-hub-02",  "ci_type": "printer",  "status": "failed",   "cpu_pct": 0.00,  "mem_pct": 0.00,  "last_checkin_at": "2026-09-06 18:02:00", "owner_team": "Workplace"}
+  ],
+
+  "disk_usage": [
+    {"host": "file-prd-01", "mount": "D:/data",   "used_pct": 97.30, "free_gb": 12.40},
+    {"host": "file-prd-01", "mount": "C:/",       "used_pct": 62.10, "free_gb": 91.20},
+    {"host": "db-prd-01",   "mount": "/var/lib",  "used_pct": 88.90, "free_gb": 55.60},
+    {"host": "db-prd-01",   "mount": "/",         "used_pct": 41.00, "free_gb": 118.00},
+    {"host": "app-prd-01",  "mount": "/",         "used_pct": 73.50, "free_gb": 42.10},
+    {"host": "app-prd-01",  "mount": "/var/log",  "used_pct": 94.80, "free_gb": 3.20},
+    {"host": "app-prd-02",  "mount": "/",         "used_pct": 38.20, "free_gb": 129.00},
+    {"host": "app-prd-02",  "mount": "/var/log",  "used_pct": 45.10, "free_gb": 60.30},
+    {"host": "app-prd-03",  "mount": "/",         "used_pct": 51.70, "free_gb": 98.40},
+    {"host": "app-prd-03",  "mount": "/var/log",  "used_pct": 29.60, "free_gb": 82.10},
+    {"host": "vpn-gw-01",   "mount": "/flash",    "used_pct": 66.00, "free_gb": 4.80},
+    {"host": "file-prd-01", "mount": "E:/backup", "used_pct": 79.40, "free_gb": 210.50}
+  ],
+
+  "access_groups": [
+    {"group_name": "finance-reports-ro", "description": "Read-only access to finance reporting",   "owner": "M-07 Alan Whitfield", "manager_approval": 1},
+    {"group_name": "vpn-users",          "description": "Standard remote access",                   "owner": "M-09 Clara Fox",      "manager_approval": 0},
+    {"group_name": "sales-crm-write",    "description": "Write access to the CRM",                  "owner": "M-03 Ruth Kelly",     "manager_approval": 1},
+    {"group_name": "eng-deploy-prod",    "description": "Production deployment rights",             "owner": "M-11 Sam Doyle",      "manager_approval": 1},
+    {"group_name": "hr-records",         "description": "HR personnel records - restricted",        "owner": "M-05 Peter Nagy",     "manager_approval": 1},
+    {"group_name": "printer-admins",     "description": "Manage print queues",                      "owner": "M-09 Clara Fox",      "manager_approval": 0}
+  ],
+
+  "group_memberships": [
+    {"user_id": "U-1042", "group_name": "vpn-users",          "granted_at": "2026-01-05 09:00:00"},
+    {"user_id": "U-1042", "group_name": "finance-reports-ro", "granted_at": "2026-01-05 09:00:00"},
+    {"user_id": "U-3311", "group_name": "vpn-users",          "granted_at": "2025-11-11 09:00:00"},
+    {"user_id": "U-3311", "group_name": "eng-deploy-prod",    "granted_at": "2026-02-14 09:00:00"},
+    {"user_id": "U-4120", "group_name": "vpn-users",          "granted_at": "2026-03-02 09:00:00"},
+    {"user_id": "U-5203", "group_name": "hr-records",         "granted_at": "2025-09-19 09:00:00"},
+    {"user_id": "U-6014", "group_name": "vpn-users",          "granted_at": "2026-04-08 09:00:00"},
+    {"user_id": "U-7188", "group_name": "finance-reports-ro", "granted_at": "2026-05-30 09:00:00"},
+    {"user_id": "U-8022", "group_name": "printer-admins",     "granted_at": "2025-10-01 09:00:00"},
+    {"user_id": "U-2660", "group_name": "sales-crm-write",    "granted_at": "2026-06-21 09:00:00"}
+  ],
+
+  "tickets": [
+    {"ticket_id": "INC-87001", "user_id": "U-1042", "body": "Locked out after failed logins",                  "category": "access",  "status": "resolved",  "resolution": "Unlocked per RB-01; advised on cached credentials", "created_at": "2026-07-14 09:12:00", "closed_at": "2026-07-14 09:40:00"},
+    {"ticket_id": "INC-87455", "user_id": "U-1042", "body": "Locked out again after phone replacement",        "category": "access",  "status": "resolved",  "resolution": "Unlocked; stale credential on old device removed",  "created_at": "2026-08-02 10:05:00", "closed_at": "2026-08-02 10:31:00"},
+    {"ticket_id": "INC-87890", "user_id": "U-1042", "body": "Outlook prompts for password repeatedly",         "category": "software","status": "resolved",  "resolution": "Cleared Credential Manager entries per KB-002",    "created_at": "2026-08-25 14:22:00", "closed_at": "2026-08-25 15:02:00"},
+    {"ticket_id": "INC-87102", "user_id": "U-2087", "body": "Cannot access CRM after last day",                "category": "access",  "status": "escalated", "resolution": "Leaver - referred to HR offboarding",               "created_at": "2026-08-01 11:00:00", "closed_at": "2026-08-01 11:20:00"},
+    {"ticket_id": "INC-87233", "user_id": "U-3311", "body": "VPN drops every few minutes",                     "category": "network", "status": "resolved",  "resolution": "Client MTU set to 1300 per KB-001",                 "created_at": "2026-07-20 13:44:00", "closed_at": "2026-07-20 14:30:00"},
+    {"ticket_id": "INC-87540", "user_id": "U-3311", "body": "Needs prod deploy rights for release duty",       "category": "access",  "status": "resolved",  "resolution": "Granted eng-deploy-prod after manager approval",    "created_at": "2026-08-05 09:15:00", "closed_at": "2026-08-05 16:00:00"},
+    {"ticket_id": "INC-87611", "user_id": "U-4120", "body": "Shared drive is full, cannot save",               "category": "storage", "status": "resolved",  "resolution": "Archived old campaign assets; freed 40GB",          "created_at": "2026-08-09 10:02:00", "closed_at": "2026-08-09 12:10:00"},
+    {"ticket_id": "INC-87700", "user_id": "U-5203", "body": "MFA push never arrives",                          "category": "access",  "status": "escalated", "resolution": "Escalated to Identity Services - push gateway",     "created_at": "2026-08-15 08:30:00", "closed_at": "2026-08-15 09:05:00"},
+    {"ticket_id": "INC-87755", "user_id": "U-5203", "body": "Account locked after MFA retries",                "category": "access",  "status": "resolved",  "resolution": "Unlocked per RB-01",                                "created_at": "2026-08-16 09:00:00", "closed_at": "2026-08-16 09:18:00"},
+    {"ticket_id": "INC-87801", "user_id": "U-6014", "body": "Build server disk full",                          "category": "storage", "status": "resolved",  "resolution": "Rotated logs on app-prd-01 /var/log",               "created_at": "2026-08-21 07:40:00", "closed_at": "2026-08-21 08:25:00"},
+    {"ticket_id": "INC-87866", "user_id": "U-7188", "body": "Cannot open finance report dashboard",            "category": "access",  "status": "resolved",  "resolution": "Group membership confirmed; browser cache cleared", "created_at": "2026-08-23 15:11:00", "closed_at": "2026-08-23 15:55:00"},
+    {"ticket_id": "INC-87920", "user_id": "U-8022", "body": "Print queue stuck for whole floor",               "category": "hardware","status": "resolved",  "resolution": "Restarted print-spooler on app-prd-02",             "created_at": "2026-08-27 11:20:00", "closed_at": "2026-08-27 11:45:00"},
+    {"ticket_id": "INC-87988", "user_id": "U-9310", "body": "Laptop will not power on",                        "category": "hardware","status": "escalated", "resolution": "Device replacement raised per RB-10",               "created_at": "2026-08-29 09:05:00", "closed_at": "2026-08-29 10:00:00"},
+    {"ticket_id": "INC-88010", "user_id": "U-1550", "body": "Access removed unexpectedly",                     "category": "access",  "status": "resolved",  "resolution": "Contract ended - correct behaviour, no action",     "created_at": "2026-08-30 09:30:00", "closed_at": "2026-08-30 09:44:00"},
+    {"ticket_id": "INC-88044", "user_id": "U-2660", "body": "OneDrive stuck on Processing changes",            "category": "software","status": "resolved",  "resolution": "Reset sync client per KB-012",                      "created_at": "2026-09-01 10:15:00", "closed_at": "2026-09-01 11:00:00"},
+    {"ticket_id": "INC-88077", "user_id": "U-3775", "body": "Needs VPN access for on-call rotation",           "category": "access",  "status": "resolved",  "resolution": "Granted vpn-users; no manager approval required",   "created_at": "2026-09-03 08:50:00", "closed_at": "2026-09-03 09:12:00"}
+  ]
+}

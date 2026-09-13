@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: opsmate-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpw}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-opsmate}
+      MYSQL_USER: ${MYSQL_USER:-opsmate}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-opsmate}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - opsmate_mysql_data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${MYSQL_ROOT_PASSWORD:-rootpw}"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 20s
+
+volumes:
+  opsmate_mysql_data:
