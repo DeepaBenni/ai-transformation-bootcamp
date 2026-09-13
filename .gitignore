@@ -4,3 +4,23 @@
 __pycache__/
 data/raw/
 .claude
+
+# --- python tooling ---
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# --- editor / OS ---
+.vscode/
+.DS_Store
+
+# --- personal study / demo-prep notes, kept local ---
+Documentation/
+understanding_docs/
+
+# --- capstone 2 (OpsMate) runtime artefacts ---
+chroma_opsmate/
+traces/
+*.log
+checkpoints.sqlite*
+chat_sessions.json
