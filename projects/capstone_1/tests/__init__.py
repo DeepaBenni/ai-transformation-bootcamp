@@ -1,1 +1,0 @@
-"""SignalCraft package."""
