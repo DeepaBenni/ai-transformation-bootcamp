@@ -75,9 +75,10 @@ def main(argv: list[str] | None = None) -> int:
 
         frame = pd.read_parquet(FEATURES_PARQUET)
         results = train.run_cv(frame)
-        print(train.summarise(results).to_string())
+        summary = train.summarise(results)
+        print(summary.to_string())
 
-        best = train.summarise(results).index[0]
+        best = summary.index[0]
         model, meta = train.fit_final(frame, best)
         path = train.export(model, frame, results, family=best, target_recall=args.target_recall)
         print(f"\nshipped {best}: {path}  ({meta['rows']:,} rows)")

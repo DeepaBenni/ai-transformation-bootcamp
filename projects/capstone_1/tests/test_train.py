@@ -5,16 +5,8 @@ from app.features.build import FEATURE_COLUMNS
 from app.models import train
 
 
-def _synthetic(rows_per_period=3000):
-    """Small frame with real signal, so a model can actually learn something.
-
-    ``rows_per_period`` is larger than a first draft (400) because the boosted
-    family, evaluated in-sample against its own training period in
-    ``export()``, drives probabilities so close to 1 on a tiny fixture that
-    ``round(threshold, 4)`` collides with 1.0 and trips the artefact's
-    ``threshold < 1.0`` contract - a rounding artefact of an overfit toy
-    model, not a production concern (real folds carry millions of rows).
-    """
+def _synthetic(rows_per_period=400):
+    """Small frame with real signal, so a model can actually learn something."""
     rng = np.random.default_rng(7)
     periods = ["2026-01", "2026-02", "2026-03"]
     frames = []
@@ -55,7 +47,13 @@ def test_summarise_reports_the_standard_deviation():
 
 def test_export_writes_an_artefact_carrying_the_feature_order(tmp_path, monkeypatch):
     monkeypatch.setattr(train, "MODEL_PATH", tmp_path / "model.pkl")
-    frame = _synthetic()
+    # rows_per_period=3000: at the default 400, the boosted family - evaluated
+    # in-sample against its own training period in export() - drives
+    # probabilities so close to 1 that round(threshold, 4) collides with 1.0
+    # and trips the threshold < 1.0 assertion below. A rounding artefact of an
+    # overfit toy model, not a production concern (real folds carry millions
+    # of rows); 3000 gives it enough data to settle safely under 1.0.
+    frame = _synthetic(rows_per_period=3000)
     results = train.run_cv(frame, validation_periods=["2026-03"])
     model, _ = train.fit_final(frame, "boosted")
 
