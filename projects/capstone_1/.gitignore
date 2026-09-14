@@ -1,0 +1,23 @@
+# R1: no raw or derived data is committed. The manifest is the evidence.
+/data/*
+!/data/manifest.json
+
+# trained artefacts - rebuild with: python -m app.cli train
+models/*.pkl
+models/metrics.json
+
+# generated figures
+reports/figures/*.png
+
+# secrets
+.env
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# personal presentation prep - guides and demo scripts, kept local only
+presentation/

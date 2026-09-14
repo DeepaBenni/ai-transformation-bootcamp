@@ -1,0 +1,7 @@
+{
+  "holdout_start": "2026-05",
+  "holdout_sha256": "e3d7a21fcd8e2d645472a816fa4379942137f142768aa88dd819e3a05b39f750",
+  "holdout_rows": 1199541,
+  "development_rows": 5696742,
+  "opened": false
+}

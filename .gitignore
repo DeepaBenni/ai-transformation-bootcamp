@@ -17,6 +17,7 @@ data/raw/
 # --- personal study / demo-prep notes, kept local ---
 Documentation/
 understanding_docs/
+capstone-1-signalcraft/
 
 # --- capstone 2 (OpsMate) runtime artefacts ---
 chroma_opsmate/
