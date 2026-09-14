@@ -60,10 +60,11 @@ This is where the bootcamp's central ML lesson lands hard.
   (0.7523 vs. 0.7518 for Logistic Regression).
 - **Day 8** — cleaning and reading real ticket text, the stepping stone
   toward treating ticket descriptions as first-class model input.
-- `week_2/app.py` + `week_2/features.py` — a small **Streamlit** app that
-  scores a new ticket at intake using the Day 7 model, with the feature
-  logic shared between training and serving so the two can never drift
-  apart (the same principle Capstone 1's serving layer later scales up).
+- `week_2/day_7/app.py` + `week_2/day_7/features.py` — a small **Streamlit**
+  app that scores a new ticket at intake using the Day 7 model, with the
+  feature logic shared between training and serving so the two can never
+  drift apart (the same principle Capstone 1's serving layer later scales
+  up).
 
 ### Week 3 — LLMs, RAG, and multi-agent systems (Days 11–14)
 
