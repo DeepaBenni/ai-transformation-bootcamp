@@ -250,6 +250,6 @@ rest of the bootcamp work:
 
 ```
 <repo root>/data/
-├── knowledge_base/   40 KB articles and runbooks
-└── seed/estate.json  90 rows of synthetic estate
+├── capstone_2_knowledge_base/   40 KB articles and runbooks
+└── capstone_2_seed/estate.json 90 rows of synthetic estate
 ```

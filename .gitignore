@@ -18,6 +18,7 @@ data/raw/
 Documentation/
 understanding_docs/
 capstone-1-signalcraft/
+docs/superpowers/
 
 # --- capstone 2 (OpsMate) runtime artefacts ---
 chroma_opsmate/

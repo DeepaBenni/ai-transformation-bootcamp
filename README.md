@@ -23,7 +23,6 @@ multi-agent orchestration → prove both skill sets with a full capstone each.
 | [`projects/capstone_1/`](projects/capstone_1/) | **Capstone 1 — SignalCraft:** flight-delay risk prediction (classical ML) |
 | [`projects/capstone_2/`](projects/capstone_2/) | **Capstone 2 — OpsMate:** agentic IT service-desk assistant (LangGraph + FastAPI + Streamlit) |
 | [`data/`](data/) | Shared datasets and the 40-document knowledge base used by Week 3 and Capstone 2 |
-| [`docs/superpowers/`](docs/superpowers/) | Design specs and implementation plans written before each capstone was built |
 | [`LEARNING_LOG.md`](LEARNING_LOG.md) | Daily "what I built / what broke / what I couldn't answer" journal |
 
 ---
@@ -119,7 +118,7 @@ station duty manager deciding whether to pre-position standby ground crew.
 
 Eleven graded requirements (R1–R11) map onto this, from *reproducible
 acquisition* through *decision framing* to *engineering quality* — see
-`docs/superpowers/specs/2026-09-13-capstone-1-signalcraft-design.md` for the
+[`projects/capstone_1/README.md`](projects/capstone_1/README.md) for the
 full traceability table.
 
 **Run it:** `python -m app.cli train` to reproduce the model, then
@@ -210,4 +209,3 @@ whole system.
 
 - [`LEARNING_LOG.md`](LEARNING_LOG.md) — the daily journal this summary is drawn from
 - [`projects/capstone_1/`](projects/capstone_1/) and [`projects/capstone_2/README.md`](projects/capstone_2/README.md) — full project documentation
-- [`docs/superpowers/`](docs/superpowers/) — the design specs and implementation plans written *before* each capstone, for anyone curious how the plan compared to what got built

@@ -1,4 +1,4 @@
-"""Populate the OpsMate synthetic estate from data/seed/estate.json.
+"""Populate the OpsMate synthetic estate from data/capstone_2_seed/estate.json.
 
 Idempotent: every insert is an upsert keyed on the table's primary or unique key,
 so running this script twice leaves the database in exactly the same state.
@@ -26,7 +26,7 @@ from dotenv import load_dotenv
 
 ROOT: Final[Path] = Path(__file__).resolve().parent.parent
 # Seed data lives in the repo-wide data/ folder, two levels above this project.
-SEED_FILE: Final[Path] = ROOT.parent.parent / "data" / "seed" / "estate.json"
+SEED_FILE: Final[Path] = ROOT.parent.parent / "data" / "capstone_2_seed" / "estate.json"
 
 # Parents before children: foreign keys are enforced, so order matters.
 LOAD_ORDER: Final[tuple[str, ...]] = (

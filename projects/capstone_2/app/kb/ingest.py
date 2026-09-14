@@ -103,7 +103,7 @@ def build_store(*, rebuild: bool = False) -> Chroma:
     if not documents:
         raise SystemExit(
             f"No markdown files found in {settings.kb_source_dir}\n"
-            "Copy the Day 12 knowledge base into data/knowledge_base/ first."
+            "Copy the Day 12 knowledge base into data/capstone_2_knowledge_base/ first."
         )
 
     splitter = RecursiveCharacterTextSplitter(

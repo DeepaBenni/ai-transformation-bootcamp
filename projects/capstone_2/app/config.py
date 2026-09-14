@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     mysql_url: str = "mysql+pymysql://opsmate:opsmate@127.0.0.1:3306/opsmate"
     chroma_dir: Path = ROOT / "chroma_opsmate"
     kb_collection: str = "kb_articles"
-    kb_source_dir: Path = REPO_ROOT / "data" / "knowledge_base"
+    kb_source_dir: Path = REPO_ROOT / "data" / "capstone_2_knowledge_base"
 
     # ---- retrieval ---------------------------------------------------------
     retrieval_k: int = 5
